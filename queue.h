@@ -14,8 +14,8 @@ bool is_empty_Queue(Queue *queue); // Проверить, пуста ли оче
 
 int push_Queue(Queue *queue, void *data); // Добавить элемент в очередь
 int get_Queue(Queue *queue, void *data); // Получить элемент из очереди
-int erase_Queue(Queue *queue);
-int pop_Queue(Queue *queue, void *data); // Удалить элемент из очереди`
-void free_Queue(Queue *queue);
+int erase_Queue(Queue *queue); // Удалить последний элемент из очереди
+int pop_Queue(Queue *queue, void *data); // Получить и удалить последний элемент из очереди
+void free_Queue(Queue *queue); // Освободить память, занятую очередью
 
 #endif // QUEUE_H
