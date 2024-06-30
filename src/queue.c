@@ -36,6 +36,21 @@ Iter_Queue get_tail_Iter_Queue(const Queue *queue)
     return queue->tail;
 }
 
+void *get_data_Iter_Queue(const Iter_Queue iter)
+{
+    return iter->data;
+}
+
+Iter_Queue set_data_Iter_Queue(Queue *queue, Iter_Queue iter, const void *data)
+{
+    void *new_data = malloc(queue->size);
+    if (new_data == NULL) return NULL;
+    free(iter->data);
+    iter->data = new_data;
+    memcpy(iter->data, data, queue->size);
+    return iter;
+}
+
 size_t get_len_Queue(const Queue *queue)
 {
     return queue->len;
@@ -84,9 +99,10 @@ Iter_Queue erase_Queue(Queue *queue)
     return get_Queue(queue);
 }
 
-Iter_Queue pop_Queue(Queue *queue, Iter_Queue *data_iter)
+Iter_Queue pop_Queue(Queue *queue, void **data)
 {
-    *data_iter = get_Queue(queue);
+    *data = malloc(queue->size);
+    memcpy(*data, get_Queue(queue)->data, queue->size);
     return erase_Queue(queue);
 }
 
